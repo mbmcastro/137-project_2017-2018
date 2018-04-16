@@ -77,7 +77,7 @@ public class Draw extends GameData implements Runnable{
         panel.setFocusable(true);
         panel.requestFocusInWindow();
         frame.pack();
-        frame.setResizable(false);
+        frame.setResizable(true);
     
         new Thread(this).start();
     }

@@ -6,6 +6,8 @@ class UDPServer implements Runnable{
     private DatagramSocket serverSocket;
     private int numClients;
     private HashMap<String, ClientData> clientData;
+    private static int[][] mapArea;
+    
 
     private class ClientData {
         public int port;
@@ -32,7 +34,9 @@ class UDPServer implements Runnable{
 
         try {
             waitForClients();
-            broadcast("game _ start");            
+            broadcast("game _ start");
+            Maps map = new Maps();
+            mapArea = map.getMap();         
 
             Iterator iter = clientData.keySet().iterator();
             while (iter.hasNext()) {
@@ -95,8 +99,22 @@ class UDPServer implements Runnable{
 
     private String generateRandomPlayerConfig(String username) {
         Random rand = new Random();
-        String x = Integer.toString(rand.nextInt(600));
-        String y = Integer.toString(rand.nextInt(600));
+        int flg = 0;
+        int xx = 0;
+        int yy = 0;
+        // while(flg==0){
+            xx = rand.nextInt(600);
+            yy = rand.nextInt(600);
+        //    System.out.println(xx+"                                             "+yy);
+        //    if(mapArea[xx][yy]== 0){
+        //         flg = 1;
+        //     }
+        // }
+        // flg = 0;
+        // String x = Integer.toString(rand.nextInt(600));
+        // String y = Integer.toString(rand.nextInt(600));
+        String x = Integer.toString(xx);
+        String y = Integer.toString(yy);
         String dir = Integer.toString(rand.nextInt(4) + 1);
         String playerType = Integer.toString(rand.nextInt(2) + 1);
         String message = "player " + username + " create " + x + " " + y + " " + dir + " " + playerType;

@@ -14,6 +14,10 @@ public class GameData{
 		numPlayers = 0;
 		GameData.username = username;
 	}
+	public static void addMissile(Missile missile) {
+		missiles.put(missile.getId(), missile);
+		new Thread(missile).start();
+	}
 
 	public static void addPlayer(Player player){
 		players.put(player.getUsername(), player);
@@ -29,15 +33,6 @@ public class GameData{
 		player.setDirection(dir);
 	}
 	
-	public static void addMissile(Missile missile) {
-		missiles.put(missile.getId(), missile);
-		new Thread(missile).start();
-	}
-
-	public static int getNumPlayers(){
-		return numPlayers;
-	}
-
 	public static ConcurrentHashMap<String, Player> getPlayers() {
 		return players;
 	}
@@ -49,5 +44,9 @@ public class GameData{
 	public static String getUsername() {
 		return GameData.username;
 	}
+	public static int getNumPlayers(){
+		return numPlayers;
+	}
+
 	
 }

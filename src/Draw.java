@@ -45,39 +45,36 @@ public class Draw extends GameData implements Runnable{
         heart2.setIcon(new ImageIcon("../Assets/Images/Objects/Heart.png"));
         heart3.setIcon(new ImageIcon("../Assets/Images/Objects/Heart.png"));
 
-        
-
-
-        currentLife.addKeyListener((PlayerPlayer)GameData.getPlayers().get(name));
         Draw.name = name;
         frame.setLayout(layout); 
         currentLife.setEditable(false);
         currentLife.setSize(30, 170);
         
-        
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setPreferredSize(new Dimension(775, 600));
         panel.setPreferredSize(new Dimension(600, 600));
         chatPanel.setPreferredSize(new Dimension(175, 600));
+        frame.setResizable(true);
+        frame.setVisible(true);
+        panel.setBackground(Color.BLACK);
+        panel.setFocusable(true);
+
         chatPanel.add(currentLife);
         chatPanel.add(blank);
         chatPanel.add(heart1);
         chatPanel.add(heart2);
         chatPanel.add(heart3);
         frame.add(chatPanel,BorderLayout.WEST);
-        frame.addKeyListener((PlayerPlayer)GameData.getPlayers().get(name));
+        frame.add(panel,BorderLayout.EAST);
 
+        frame.addKeyListener((PlayerPlayer)GameData.getPlayers().get(name));
+        currentLife.addKeyListener((PlayerPlayer)GameData.getPlayers().get(name));
         panel.addKeyListener((PlayerPlayer)GameData.getPlayers().get(name));
         chatPanel.addKeyListener((PlayerPlayer)GameData.getPlayers().get(name));
-        //System.out.println(name);
         
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(775, 600));
-        frame.setVisible(true);
-        frame.add(panel,BorderLayout.EAST);
-        panel.setBackground(Color.BLACK);
-        panel.setFocusable(true);
         panel.requestFocusInWindow();
         frame.pack();
-        frame.setResizable(true);
+        
     
         new Thread(this).start();
     }
@@ -96,15 +93,6 @@ public class Draw extends GameData implements Runnable{
 					if(mapArea[i][j] == 3){
 						block.setIcon(new ImageIcon("../Assets/Images/Objects/Crate.png"));
 					}
-					// else if(mapArea[i][j] == 4){
-					// 	block.setIcon(new ImageIcon("../Assets/Images//Objects/Crate.png"));
-					// }
-					// else if(mapArea[i][j] == 5){
-					// 	block.setIcon(new ImageIcon("../Assets/Images//Objects/Crate.png"));
-					// }
-					// else if(mapArea[i][j] == 6){
-					// 	block.setIcon(new ImageIcon("../Assets/Images//Objects/Crate.png"));
-					// }
 
 					rec.setBounds(i*30, j*30, 30, 30);
 					block.setLocation(i*30,j*30);
@@ -140,8 +128,6 @@ public class Draw extends GameData implements Runnable{
                     heart1.setIcon(new ImageIcon("../Assets/Images/Objects/Blank.png"));
                 }
 
-
-             
                 player.setLocation(xpos, ypos);                       //sets the location of the player based on the values in the hashtable
                 
                 if(dir == Entity.UP){
@@ -238,9 +224,5 @@ public class Draw extends GameData implements Runnable{
                 
             }
         }
-
-
-
-
   }
 }

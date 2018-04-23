@@ -9,6 +9,8 @@ public class Entity{
 	protected boolean canAttack;
 	protected int playerType;
 
+	private static int[][] mapArea;
+
 	public static final int UP = 1;
 	public static final int DOWN = 2;
 	public static final int LEFT = 3;
@@ -20,6 +22,8 @@ public class Entity{
 	public Entity(String username){
 		this.username = username;								//sets the username of the player
 		this.canAttack = true;
+		Maps map = new Maps();
+		mapArea = map.getMap();
 
 		// Random rand = new Random();
 		
@@ -108,9 +112,13 @@ public class Entity{
 	}
 
 	public void move(){							//function that updates the Position of the player
+
 		if(this.dir == Entity.UP){
 			if(this.ypos - this.speed > 0){
-				this.ypos -= this.speed;
+			
+					this.ypos -= this.speed;
+		
+				
 			}
 		}
 		else if(this.dir == Entity.DOWN){

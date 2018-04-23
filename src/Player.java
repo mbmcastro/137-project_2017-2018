@@ -1,6 +1,7 @@
 import java.util.*;
 public class Player extends Entity implements Runnable {
     private int hp;
+    private static int[][] mapArea;
 
     public Player(String username) {
         super(username);
@@ -9,6 +10,8 @@ public class Player extends Entity implements Runnable {
         this.width = 30;
         this.height = 30;
         this.canAttack = true;
+        Maps map = new Maps();
+        mapArea = map.getMap();
     }
 
     public Player(String username, int xpos, int ypos, int dir, int playerType) {
@@ -18,12 +21,12 @@ public class Player extends Entity implements Runnable {
         this.dir = dir;
         this.hp = 3;
         this.speed = 0;
-        this.width = 30;
         this.height = 30;
+        this.width = 30;
         this.canAttack = true;
         this.playerType = playerType;
-
-       
+        Maps map = new Maps();
+        mapArea = map.getMap();
     }
 
     public int getHp() {
@@ -76,7 +79,25 @@ public class Player extends Entity implements Runnable {
     public void run() {
         while (this.isAlive()) {
             if(this.getSpeed() > 0){
-                this.move();
+                if(mapArea[this.getXPos()/30][(this.getYPos()-this.getSpeed())/30] != 0 && this.getDir() == Entity.UP ){
+
+                    
+                }else if(mapArea[this.getXPos()/30][(this.getYPos()+this.getSpeed()+30)/30] != 0 && this.getDir() == Entity.DOWN ){
+                    
+                                        
+                }
+                else if(mapArea[(this.getXPos()-this.getSpeed())/30][this.getYPos()/30] != 0 && this.getDir() == Entity.LEFT ){
+                    
+                                        
+                }
+                else if(mapArea[(this.getXPos()+this.getSpeed()+15)/30][this.getYPos()/30] != 0 && this.getDir() == Entity.RIGHT ){
+                    
+                                        
+                }
+                else{
+                    this.move();
+                }
+                
             }
             try{
                 

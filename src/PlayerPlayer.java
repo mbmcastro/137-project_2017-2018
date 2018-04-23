@@ -142,40 +142,44 @@ public class PlayerPlayer extends Player implements KeyListener {
 
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT) {
-            this.setDirection(Entity.LEFT);
-            this.setSpeed(moveSpeed);
-        }
-        else if (key == KeyEvent.VK_RIGHT) {
-            this.setDirection(Entity.RIGHT);
-            this.setSpeed( moveSpeed);
-        }
-        else if (key == KeyEvent.VK_UP) {
+        if (key == KeyEvent.VK_UP) {
             this.setDirection(Entity.UP);
             this.setSpeed(moveSpeed);
         }
         else if (key == KeyEvent.VK_DOWN) {
             this.setDirection(Entity.DOWN);
             this.setSpeed(moveSpeed);
-        } else if (key == KeyEvent.VK_SPACE) {
+        }
+        else if (key == KeyEvent.VK_LEFT) {
+            this.setDirection(Entity.LEFT);
+            this.setSpeed(moveSpeed);
+        }
+        else if (key == KeyEvent.VK_RIGHT) {
+            this.setDirection(Entity.RIGHT);
+            this.setSpeed( moveSpeed);
+        } 
+        else if (key == KeyEvent.VK_SPACE) {
             this.fire();
-        }  else if (key == KeyEvent.VK_S) {
+        } 
+        else if (key == KeyEvent.VK_CONTROL) {
             this.fire(this.getPlayerType()+2);
         }      
     }
 
     public void keyReleased(KeyEvent e) {    
         int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT) {
-            this.setSpeed(0);
-        } else if (key == KeyEvent.VK_RIGHT) {
-            this.setSpeed(0);
-        } else if (key == KeyEvent.VK_UP) {
-            this.setSpeed(0);
-        } else if (key == KeyEvent.VK_DOWN) {
+        if (key == KeyEvent.VK_UP) {
             this.setSpeed(0);
         }
+        else if (key == KeyEvent.VK_DOWN) {
+            this.setSpeed(0);
+        }
+        else if (key == KeyEvent.VK_LEFT) {
+            this.setSpeed(0);
+        }
+        else if (key == KeyEvent.VK_RIGHT) {
+            this.setSpeed(0);
+        } 
     }
     
     public void keyTyped(KeyEvent ke) {}

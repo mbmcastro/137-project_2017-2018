@@ -135,6 +135,8 @@ public class Draw extends GameData implements Runnable{
                         player.setIcon(new ImageIcon("../Assets/Images/PlayerType/Model/Ninja_01.png")); 
                     }else if(playerType == Entity.SAMURAI){
                         player.setIcon(new ImageIcon("../Assets/Images/PlayerType/Model/Samurai_01.png")); 
+                    }else if(playerType == 3){
+                        player.setIcon(new ImageIcon("../Assets/Image/PlayerType/Model/Invisible.png"));
                     }
                      
                 }
@@ -143,13 +145,17 @@ public class Draw extends GameData implements Runnable{
                         player.setIcon(new ImageIcon("../Assets/Images/PlayerType/Model/Ninja_01.png")); 
                     }else if(playerType == Entity.SAMURAI){
                         player.setIcon(new ImageIcon("../Assets/Images/PlayerType/Model/Samurai_01.png")); 
+                    }else if(playerType == 3){
+                        player.setIcon(new ImageIcon("../Assets/Image/PlayerType/Model/Invisible.png"));
                     }
                 }
                 else if(dir == Entity.LEFT){
                     if(playerType == Entity.NINJA){
                         player.setIcon(new ImageIcon("../Assets/Images/PlayerType/Model/Ninja_01.png")); 
                     }else if(playerType == Entity.SAMURAI){
-                        player.setIcon(new ImageIcon("../Assets/Images/PlayerType/Model/Samurai_01.png")); 
+                        player.setIcon(new ImageIcon("../Assets/Images/PlayerType/Model/Samurai_02.png")); 
+                    }else if(playerType == 3){
+                        player.setIcon(new ImageIcon("../Assets/Image/PlayerType/Model/Invisible.png"));
                     }
                 }
                 else if(dir == Entity.RIGHT){
@@ -157,6 +163,8 @@ public class Draw extends GameData implements Runnable{
                         player.setIcon(new ImageIcon("../Assets/Images/PlayerType/Model/Ninja_01.png")); 
                     }else if(playerType == Entity.SAMURAI){
                         player.setIcon(new ImageIcon("../Assets/Images/PlayerType/Model/Samurai_01.png")); 
+                    }else if(playerType == 3){
+                        player.setIcon(new ImageIcon("../Assets/Image/PlayerType/Model/Invisible.png"));
                     }
                 }
                  

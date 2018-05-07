@@ -26,12 +26,12 @@ public class PlayerPlayer extends Player implements KeyListener {
 						//System.out.println("waiting to attack. hahaha");
                         resumeAttack();
                         // int playerType = this.getType();
-						if(playerType == NINJA){
+						if(playerType == NINJA || playerType == NINJA +2){
                             sleep(1000);
                             //Ninja can only attack once per second
 						}
-						else if(playerType == SAMURAI){
-                            sleep(3000);
+						else if(playerType == SAMURAI || playerType == SAMURAI+2){
+                            sleep(2000);
                             //Samurai can only attack once every 3 seconds
 						}
 						
@@ -41,7 +41,22 @@ public class PlayerPlayer extends Player implements KeyListener {
 				
 			}
 		};
-		timerThread.start();
+        timerThread.start();
+        
+        Thread specialAttackTimeThread = new Thread(){
+            public void run(){
+                while(true){
+                    try{
+                       resumeSpecialAttack();
+                       sleep(10000);
+                    }
+                    catch(Exception e){
+
+                    }
+                }
+            }
+        };
+        specialAttackTimeThread.start();
 
     }
 
@@ -78,29 +93,37 @@ public class PlayerPlayer extends Player implements KeyListener {
         }
     }
     public void fire(int specialAttack) {
-        if(this.getCanAttack()){
-            int xpos = this.getXPos();
-            int ypos = this.getYPos();
-            int dir = this.getDir();
-            int type = this.getPlayerType();
-            
-            if (dir == Entity.UP) {
-                ypos -= this.getHeight();
-                xpos += this.getWidth() / 2;
-            } else if (dir == Entity.DOWN) {
-                ypos += this.getHeight();
-                xpos += this.getWidth() / 2;
-            } else if (dir == Entity.LEFT) {
-                xpos -= this.getWidth();
-            } else if (dir == Entity.RIGHT) {
-                xpos += this.getWidth();
-            }
+        if(this.getCanSpecialAttack()){
             // if(specialAttack == 3){
-            //     type = 3;
+
             // }
-            this.canAttack = false;
-            Missile missile = new PlayerMissile(this.username, xpos, ypos, dir, type);
-            GameData.addMissile(missile);
+            // else{
+                int xpos = this.getXPos();
+                int ypos = this.getYPos();
+                int dir = this.getDir();
+                int type = this.getPlayerType();
+                
+                if (dir == Entity.UP) {
+                    ypos -= this.getHeight();
+                    xpos += this.getWidth() / 2;
+                } else if (dir == Entity.DOWN) {
+                    ypos += this.getHeight();
+                    xpos += this.getWidth() / 2;
+                } else if (dir == Entity.LEFT) {
+                    xpos -= this.getWidth();
+                } else if (dir == Entity.RIGHT) {
+                    xpos += this.getWidth();
+                }
+                if(specialAttack == 4){
+                    type = 4;
+                }else if(specialAttack == 3){
+                    type = 3;
+                }
+                this.canSpecialAttack = false;
+                Missile missile = new PlayerMissile(this.username, xpos, ypos, dir, type);
+                GameData.addMissile(missile);
+            // }
+            
         }
     }
 

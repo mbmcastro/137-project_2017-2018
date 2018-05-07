@@ -10,8 +10,7 @@ class ChatServer{
 
   public static void main(String[] args) {
     int clients = Integer.parseInt(args[0]);
-    //args == number of clients
-    int port = 9999; 
+    int port = Integer.parseInt(args[1]); 
     ChatServer c = new ChatServer(clients, port);
   }
 

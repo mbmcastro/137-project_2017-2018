@@ -75,19 +75,31 @@ public class Missile extends Entity implements Runnable {
         int count = 0;
         while (this.isAlive()) {
             tick();
-            // if(this.playerType == 3){
-            //     if(count == 20);
-            //     this.setAlive(false);
-            // } else
-             if(this.getPlayerType() == Entity.NINJA){
+            if(this.playerType == 4){
+                this.speed = 15;
+                if(count == 25){
+                    this.setAlive(false);
+                    this.playerType = 0;
+                }
+                
+            }else if(this.playerType == 3){
+                this.speed = 30;
+                if(count == 30){
+                    this.setAlive(false);
+                    this.playerType = 0;
+                }
+            } 
+            else if(this.getPlayerType() == Entity.NINJA){
+                this.speed = 5;
                 if(count == 2){
                     this.setAlive(false);
                 }
             }  else if(this.getPlayerType() == Entity.SAMURAI){
+                this.speed = 5;
                 if(count == 12){
                     this.setAlive(false);
                 }
-            }
+            } 
             
             count++;
             try {

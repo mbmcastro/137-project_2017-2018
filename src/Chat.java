@@ -61,7 +61,8 @@ public class Chat extends JPanel{
 				      	DataOutputStream client_message = new DataOutputStream(socket.getOutputStream());
 					      
 				      	message = textField.getText();
-				      	messagesField.append(name+":   "+textField.getText()+"\n");
+						  messagesField.append(name+":   "+textField.getText()+"\n");
+						  messagesField.setCaretPosition(messagesField.getDocument().getLength());
 				      	textField.setText("");
 				        message = name + ":   " + message;
 				    

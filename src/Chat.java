@@ -44,7 +44,8 @@ public class Chat extends JPanel{
 			      try{
 			        BufferedReader server = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			        server_message = server.readLine();
-			        messagesField.append(server_message+"\n");
+					messagesField.append(server_message+"\n");
+					messagesField.setCaretPosition(messagesField.getDocument().getLength());
 			      }
 			      catch(IOException e){}
 			    }
@@ -61,7 +62,8 @@ public class Chat extends JPanel{
 				      	DataOutputStream client_message = new DataOutputStream(socket.getOutputStream());
 					      
 				      	message = textField.getText();
-				      	messagesField.append(name+":   "+textField.getText()+"\n");
+						  messagesField.append(name+":   "+textField.getText()+"\n");
+						  messagesField.setCaretPosition(messagesField.getDocument().getLength());
 				      	textField.setText("");
 				        message = name + ":   " + message;
 				    

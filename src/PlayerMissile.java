@@ -5,7 +5,7 @@ public class PlayerMissile extends Missile {
 
     public PlayerMissile(String username, int xpos, int ypos, int dir, int type) {
         super(username, xpos, ypos, dir, type);
-        this.messagePrefix = "missile " + Integer.toString(this.getId()) + " ";
+        this.messagePrefix = "missile " + type + " ";
         String message = this.messagePrefix + "create "+ this.getUsername();
         
         GameSockets.sendUdpPacket(message);

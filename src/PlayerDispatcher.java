@@ -27,9 +27,27 @@ public class PlayerDispatcher implements Dispatcher {
             this.handlePos(target, args);
         } else if (command.equals("die")) {
             this.handleDie(username);
+        } else if (command.equals("inv")){
+            this.handleInv(target);
         }
 
         s.close();
+    }
+
+    private void handleInv(Player target){
+        target.setPlayerType(3);
+        Thread t = new Thread(){
+            public void run(){
+                try{
+                    sleep(3000);
+                    target.setPlayerType(1);
+                }
+                catch(Exception e){
+                   
+                }
+            }
+        };
+        t.start();
     }
 
     private void handleCreate(String username, String args) {

@@ -2,12 +2,15 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.*;
 import java.awt.image.*;
+import java.awt.event.*;
 import java.io.*;
 
 public class Draw extends GameData implements Runnable{
     private static JPanel panel;
     private static JPanel map;
     private static JFrame frame;
+    private static JFrame userManualFrame;
+    public JButton userManualButton;
     private static Chat chatPanel;
     private static JPanel controlPanel;
     private static JTextField  currentLife;
@@ -16,6 +19,7 @@ public class Draw extends GameData implements Runnable{
     public JLabel heart1;
     public JLabel heart2;
     public JLabel heart3;
+    public JLabel userManualLabel;
 	
     public Draw(String name, String ip, int port){
         BorderLayout layout = new BorderLayout();
@@ -32,6 +36,9 @@ public class Draw extends GameData implements Runnable{
         heart1 = new JLabel();
         heart2 = new JLabel();
         heart3 = new JLabel();
+        userManualFrame = new JFrame("User Manual");
+        userManualLabel = new JLabel();
+        userManualButton = new JButton("Help");
 
         // heart1.setLocation(100,300);
         // heart2.setLocation(100,375);
@@ -44,12 +51,25 @@ public class Draw extends GameData implements Runnable{
         heart1.setIcon(new ImageIcon("../Assets/Images/Objects/Heart.png"));
         heart2.setIcon(new ImageIcon("../Assets/Images/Objects/Heart.png"));
         heart3.setIcon(new ImageIcon("../Assets/Images/Objects/Heart.png"));
+        userManualLabel.setIcon(new ImageIcon("../Assets/Images/UserManual/UserManual.png"));
+
+        userManualButton.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) { 
+                userManualFrame.setVisible(true);
+            } 
+          } );
 
         Draw.name = name;
         frame.setLayout(layout); 
         currentLife.setEditable(false);
         currentLife.setSize(30, 170);
         
+        userManualFrame.setPreferredSize(new Dimension(775, 600));
+        userManualFrame.setResizable(false);
+        userManualFrame.setVisible(false);
+        userManualFrame.add(userManualLabel);
+        userManualFrame.pack();
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(775, 600));
         panel.setPreferredSize(new Dimension(600, 600));
@@ -64,6 +84,7 @@ public class Draw extends GameData implements Runnable{
         chatPanel.add(heart1);
         chatPanel.add(heart2);
         chatPanel.add(heart3);
+        chatPanel.add(userManualButton);
         frame.add(chatPanel,BorderLayout.WEST);
         frame.add(panel,BorderLayout.EAST);
 

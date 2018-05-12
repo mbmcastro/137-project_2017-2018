@@ -7,7 +7,9 @@ public class Entity{
 	protected int xpos, ypos;
 	protected int width, height;
 	protected boolean canAttack;
+	protected boolean canSpecialAttack;
 	protected int playerType;
+	protected boolean specAtt;
 
 	private static int[][] mapArea;
 
@@ -22,6 +24,7 @@ public class Entity{
 	public Entity(String username){
 		this.username = username;								//sets the username of the player
 		this.canAttack = true;
+		this.canSpecialAttack = true;
 		Maps map = new Maps();
 		mapArea = map.getMap();
 
@@ -57,14 +60,31 @@ public class Entity{
 		this.canAttack = true;
 		
 	}
+	public void resumeSpecialAttack(){
+		this.canSpecialAttack = true;
+	}
 	public void stopAttack(){
 		this.canAttack = false;
+	}
+	public void stopSpecial(){
+		this.canSpecialAttack = true;
 	}
 	public boolean getCanAttack(){
 		return this.canAttack;
 	}
+	public boolean getCanSpecialAttack(){
+		return this.canSpecialAttack;
+	}
 	public int getPlayerType(){
-		return this.playerType;
+		if(this.specAtt){
+			return (this.playerType+2);
+		}
+		else{
+			return this.playerType;			
+		}
+	}
+	public boolean setSpecAtt(){
+		return this.specAtt;
 	}
 	public int getType(){
 		return this.playerType;
@@ -90,6 +110,10 @@ public class Entity{
 	}
 	public String getUsername(){
 		return this.username;
+	}
+
+	public void setPlayerType(int type){
+		this.playerType = type;
 	}
 
 	public void setXPos(int xpos) {
